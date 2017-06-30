@@ -1,0 +1,103 @@
+/* ====================================== */
+/* 	 Gallery Upload START
+/* ====================================== */
+
+.gs_gallery_option_wrap {
+    padding-top: 12px;
+}
+.gs_gallery_option_input {
+    display: inline-block;
+    width: 96%;
+    padding: 0 2%;
+}
+.gs_gallery_option_input input[type="text"] {
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07) inset;
+    color: #333333;
+    outline: 0 none;
+    max-width: 100%;
+}
+.gs_gallery_option_input ul li > img {
+    display: flex;
+    margin: 0 auto;
+    height: 170px;
+    width: 210px;
+}
+.gs_gallery_option_input ul li {
+    float: left;
+    margin-right: 1%;
+    margin-bottom: 1%;
+    width: 24%;
+    box-shadow: 0 0 3px 0 #505050;
+    overflow: hidden;
+    position: relative;
+}
+#gs_gallery_image_removeall.visible {
+    display: inline;
+}
+#gs_gallery_image_removeall {
+    display: none;
+}
+.gs_gallery_option_input > ul {
+    margin-top: 20px;
+}
+.gs_gallery_option_input ul li:hover button {
+    display: block;
+}
+.gs_gallery_option_input ul li button {
+    background-color: #df5e6a;
+    border-radius: 50%;
+    border-width: 0;
+    color: #ffffff;
+    cursor: pointer;
+    display: none;
+    font-family: "dashicons";
+    font-size: 24px;
+    height: 24px !important;
+    line-height: 25px;
+    padding: 0;
+    position: absolute;
+    right: 10px;
+    text-align: center;
+    top: 5px;
+    width: 24px;
+}
+img {
+    max-width: 100%;
+    height: auto;
+}
+.gs_gallery_option_wrap #gs_gallery_image_removeall {
+    background-color: #df5e6a;
+    border-color: #d63344;
+    color: #ffffff;
+}
+
+#TB_window.thickbox-loading {
+    z-index: 100056;
+}
+/* ====================================== */
+/* 	 Gallery Upload END
+/* ====================================== */
+
+.gallery-showcase-shortcode {
+    text-align: center;
+}
+.gallery-showcase-shortcode > input {
+    background: #eeeeee;
+    display: inline-block;
+    width: 94%;
+    padding: 5px 10px;
+    border-radius: 3px;
+    margin: 10px auto;
+    cursor: pointer;
+    color: #333;
+}
+
+table.layput_options_table {
+    border: none;
+}
+.layput_options_table input,
+.layput_options_table select {
+    min-width: 80%;
+}
