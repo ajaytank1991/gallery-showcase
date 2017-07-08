@@ -99,5 +99,26 @@ table.layput_options_table {
 }
 .layput_options_table input,
 .layput_options_table select {
-    min-width: 80%;
+    min-width: 90%;
+}
+
+figure.gs_image_size {
+    display: inline-block;
+    margin: 0;
+    width: 45%;
+}
+figure.gs_image_size > input {
+    min-width: 0;
+    width: 75%;
+}
+
+
+figure.gs_padding {
+    display: inline-block;
+    margin: 0;
+    width: 24%;
+}
+figure.gs_padding > input {
+    min-width: 0;
+    width: 55%;
 }

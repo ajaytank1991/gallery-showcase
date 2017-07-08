@@ -70,6 +70,7 @@ if(!function_exists('gs_layout_options')) {
                 <th><label for="column"><b> <?php _e('Column', 'gallery-showcase'); ?> </b></label></th>
                 <td>
                     <select id="column" name="options[column]">
+                        <option value="0" <?php echo (isset($gs_options['column']) && $gs_options['column'] == '0') ? 'selected="selected"' : '' ?>><?php _e('Auto', 'gallery-showcase')?></option>
                         <option value="1" <?php echo (isset($gs_options['column']) && $gs_options['column'] == '1') ? 'selected="selected"' : '' ?>><?php _e('1 Column', 'gallery-showcase')?></option>
                         <option value="2" <?php echo (isset($gs_options['column']) && $gs_options['column'] == '2') ? 'selected="selected"' : '' ?>><?php _e('2 Columns', 'gallery-showcase')?></option>
                         <option value="3" <?php echo (isset($gs_options['column']) && $gs_options['column'] == '3') ? 'selected="selected"' : '' ?>><?php _e('3 Columns', 'gallery-showcase')?></option>
@@ -79,26 +80,65 @@ if(!function_exists('gs_layout_options')) {
                     </select>
                 </td>
             </tr>
-            
+
             <tr>
                 <th><label for="layout_effect"><b> <?php _e('Layout Effects', 'gallery-showcase'); ?> </b></label></th>
                 <td>
                     <select id="layout_effect" name="options[layout_effect]">
-                        <option value="lily"><?php _e('Lily', 'gallery-showcase')?></option>
-                        <option value="sadie"><?php _e('Sadie', 'gallery-showcase')?></option>
-                        <option value="layla"><?php _e('Layla', 'gallery-showcase')?></option>
-                        <option value="zoe"><?php _e('Zoe', 'gallery-showcase')?></option>
-                        <option value="oscar"><?php _e('Oscar', 'gallery-showcase')?></option>
-                        <option value="marley"><?php _e('Marley', 'gallery-showcase')?></option>
-                        <option value="ruby"><?php _e('Ruby', 'gallery-showcase')?></option>
-                        <option value="roxy"><?php _e('Roxy', 'gallery-showcase')?></option>
-                        <option value="bubba"><?php _e('Bubba', 'gallery-showcase')?></option>
-                        <option value="romeo"><?php _e('Romeo', 'gallery-showcase')?></option>
-                        <option value="dexter"><?php _e('Dexter', 'gallery-showcase')?></option>
-                        <option value="sarah"><?php _e('Sarah', 'gallery-showcase')?></option>
-                        <option value="chico"><?php _e('Chico', 'gallery-showcase')?></option>
-                        <option value="milo"><?php _e('Milo', 'gallery-showcase')?></option>
+                        <optgroup class="inspirational" label="<?php _e('Inspirational', 'gallery-showcase'); ?>">
+                            <option class="inspirational" value="lily" <?php echo (isset($gs_options['layout_effect']) && $gs_options['layout_effect'] == 'lily') ? 'selected="selected"' : '' ?>><?php _e('Lily', 'gallery-showcase')?></option>
+                            <option value="sadie" <?php echo (isset($gs_options['layout_effect']) && $gs_options['layout_effect'] == 'sadie') ? 'selected="selected"' : '' ?>><?php _e('Sadie', 'gallery-showcase')?></option>
+                            <option value="layla" <?php echo (isset($gs_options['layout_effect']) && $gs_options['layout_effect'] == 'layla') ? 'selected="selected"' : '' ?>><?php _e('Layla', 'gallery-showcase')?></option>
+                            <option value="zoe" <?php echo (isset($gs_options['layout_effect']) && $gs_options['layout_effect'] == 'zoe') ? 'selected="selected"' : '' ?>><?php _e('Zoe', 'gallery-showcase')?></option>
+                            <option value="oscar" <?php echo (isset($gs_options['layout_effect']) && $gs_options['layout_effect'] == 'oscar') ? 'selected="selected"' : '' ?>><?php _e('Oscar', 'gallery-showcase')?></option>
+                            <option value="marley" <?php echo (isset($gs_options['layout_effect']) && $gs_options['layout_effect'] == 'marley') ? 'selected="selected"' : '' ?>><?php _e('Marley', 'gallery-showcase')?></option>
+                            <option value="ruby" <?php echo (isset($gs_options['layout_effect']) && $gs_options['layout_effect'] == 'ruby') ? 'selected="selected"' : '' ?>><?php _e('Ruby', 'gallery-showcase')?></option>
+                            <option value="roxy" <?php echo (isset($gs_options['layout_effect']) && $gs_options['layout_effect'] == 'roxy') ? 'selected="selected"' : '' ?>><?php _e('Roxy', 'gallery-showcase')?></option>
+                            <option value="bubba" <?php echo (isset($gs_options['layout_effect']) && $gs_options['layout_effect'] == 'bubba') ? 'selected="selected"' : '' ?>><?php _e('Bubba', 'gallery-showcase')?></option>
+                            <option value="romeo" <?php echo (isset($gs_options['layout_effect']) && $gs_options['layout_effect'] == 'romeo') ? 'selected="selected"' : '' ?>><?php _e('Romeo', 'gallery-showcase')?></option>
+                            <option value="dexter" <?php echo (isset($gs_options['layout_effect']) && $gs_options['layout_effect'] == 'dexter') ? 'selected="selected"' : '' ?>><?php _e('Dexter', 'gallery-showcase')?></option>
+                            <option value="sarah" <?php echo (isset($gs_options['layout_effect']) && $gs_options['layout_effect'] == 'sarah') ? 'selected="selected"' : '' ?>><?php _e('Sarah', 'gallery-showcase')?></option>
+                            <option value="chico" <?php echo (isset($gs_options['layout_effect']) && $gs_options['layout_effect'] == 'chico') ? 'selected="selected"' : '' ?>><?php _e('Chico', 'gallery-showcase')?></option>
+                            <option value="milo" <?php echo (isset($gs_options['layout_effect']) && $gs_options['layout_effect'] == 'milo') ? 'selected="selected"' : '' ?>><?php _e('Milo', 'gallery-showcase')?></option>
+                        </optgroup>
                     </select>
+                    <input type="text" id="layout_effect_group" class="" value="" name="layout_effect_group" />
+                </td>
+            </tr>
+
+            <tr>
+                <th><label for="image_width"><b> <?php _e('Image Size', 'gllery-showcase'); ?> </b></label></th>
+                <td>
+                    <figure class="gs_image_size">
+                        <label for="image_width"><b> <?php _e('Width', 'gallery-showcase')?> </b></label>
+                        <input type="number" id="image_width" name="options[image_width]" min="50" value="<?php echo (isset($gs_options['image_width']) && $gs_options['image_width'] != '') ? $gs_options['image_width'] : '50'?>"> PX
+                    </figure>
+                    <figure class="gs_image_size">
+                        <label for="image_height"><b> <?php _e('Height ', 'gallery-showcase')?> </b></label>
+                        <input type="number" id="image_height" name="options[image_height]" min="50" value="<?php echo (isset($gs_options['image_height']) && $gs_options['image_height'] != '') ? $gs_options['image_height'] : '50'?>"> PX
+                    </figure>
+                </td>
+            </tr>
+
+            <tr>
+                <th><label for="padding_top"><b> <?php _e('Padding')?> </b></label></th>
+                <td>
+                    <figure class="gs_padding">
+                        <label for="padding_top"><b> <?php _e('Top', 'gallery-showcase')?> </b></label>
+                        <input type="number" id="padding_top" name="options[padding_top]" min="0" value="<?php echo (isset($gs_options['padding_top']) && $gs_options['padding_top'] != '') ? $gs_options['padding_top'] : '0'?>"> PX
+                    </figure>
+                    <figure class="gs_padding">
+                        <label for="padding_right"><b> <?php _e('Right', 'gallery-showcase')?> </b></label>
+                        <input type="number" id="padding_right" name="options[padding_right]" min="0" value="<?php echo (isset($gs_options['padding_right']) && $gs_options['padding_right'] != '') ? $gs_options['padding_right'] : '0'?>"> PX
+                    </figure>
+                    <figure class="gs_padding">
+                        <label for="padding_bottom"><b> <?php _e('Bottom', 'gallery-showcase')?> </b></label>
+                        <input type="number" id="padding_bottom" name="options[padding_bottom]" min="0" value="<?php echo (isset($gs_options['padding_bottom']) && $gs_options['padding_bottom'] != '') ? $gs_options['padding_bottom'] : '0'?>"> PX
+                    </figure>
+                    <figure class="gs_padding">
+                        <label for="padding_left"><b> <?php _e('Left', 'gallery-showcase')?> </b></label>
+                        <input type="number" id="padding_left" name="options[padding_left]" min="0" value="<?php echo (isset($gs_options['padding_left']) && $gs_options['padding_left'] != '') ? $gs_options['padding_left'] : '0'?>"> PX
+                    </figure>
                 </td>
             </tr>
 

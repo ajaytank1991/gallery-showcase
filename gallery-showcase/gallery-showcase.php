@@ -29,10 +29,13 @@ class GalleryShowcase {
      * Initialize the plugin
      */
     function __construct() {
-        
+
+        /* Add Functions Page */
+        require_once GS_PLUGIN_DIR . 'includes/functions.php';
+
         /* Shortcode Page */
         require_once GS_PLUGIN_DIR . 'includes/shortcode.php';
-        
+
         /* Create Posttypes */
         add_action('init', array($this, 'gs_create_posttypes'), 1);
 
@@ -44,7 +47,7 @@ class GalleryShowcase {
 
         /* Load admin scripts and styles for admin */
         add_action('admin_enqueue_scripts', array($this, 'gs_enqueue_admin_scripts'), 4);
-        
+
         /* Load admin scripts and styles for front */
         add_action('wp_enqueue_scripts', array($this, 'gs_enqueue_front_scripts'), 5);
 
@@ -52,9 +55,9 @@ class GalleryShowcase {
         add_action('admin_menu', array($this, 'gs_admin_menu_funcitons'), 6);
 
         add_action('admin_notices', array($this, 'gs_admin_notices'), 7);
-        
+
         add_filter('manage_posts_columns', array($this, 'gs_manage_posts_columns'), 8, 1);
-        
+
         add_action('manage_posts_custom_column', array($this, 'gs_manage_posts_custom_column'), 9, 2);
     }
 
@@ -77,14 +80,14 @@ class GalleryShowcase {
             if (!isset($_POST['gs_gallery_image_information'])) {
                 return;
             }
-            
+
             if (isset($_POST['gs_gallery_images'])) {
                 $portdesign_gallery_images = $_POST['gs_gallery_images'];
                 update_post_meta($post_id, 'gs_gallery_images', $portdesign_gallery_images);
             }
         }
-        
-        if($post_type == 'gs_layouts') {            
+
+        if($post_type == 'gs_layouts') {
             if (!isset($_POST['gs_layout_options_nonce'])) {
                 return;
             }
@@ -109,22 +112,25 @@ class GalleryShowcase {
 
         wp_localize_script('gs_admin_script', 'gs_script_translations', $gs_script_translations);
     }
-    
-    
+
+
     function gs_enqueue_front_scripts() {
+
+        wp_enqueue_style('gs_front_style', GS_PLUGIN_URL. 'assets/css/style.css');
+
         wp_enqueue_script('jquery');
-        wp_enqueue_script('gs_less_script', GS_PLUGIN_URL . 'assets/less/less.min.js');
+        wp_enqueue_script('gs_less_script', GS_PLUGIN_URL. 'assets/less/less.min.js', array('jquery'));
     }
 
     function gs_admin_menu_funcitons() {
         include_once GS_PLUGIN_DIR.'includes/admin_menu_funcitons.php';
     }
-    
+
     function gs_admin_notices() {
         include_once GS_PLUGIN_DIR.'includes/admin_notices.php';
     }
-    
-    function gs_manage_posts_columns($columns) {        
+
+    function gs_manage_posts_columns($columns) {
         if(get_post_type() == 'gs_layouts') {
             foreach ($columns as $key => $title) {
                 if ($key == 'date') {
@@ -137,7 +143,7 @@ class GalleryShowcase {
         }
         return $newColumnOrder;
     }
-    
+
     function gs_manage_posts_custom_column($column, $post_id) {
         if(get_post_type() == 'gs_layouts') {
             if($column == 'shortcode') {

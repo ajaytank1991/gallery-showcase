@@ -110,4 +110,9 @@ jQuery(document).ready(function () {
     });
    /*Gallery Upload END*/
    
+   /*Layout Effect chage START*/
+    var $layout_effect = jQuery('#layout_effect').val();
+    jQuery('#layout_effect_group').val($layout_effect);
+   /*Layout Effect chage END*/
+   
 });
